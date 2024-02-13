@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Web3 from 'web3';
 import citizenRegistryABI from './contracts/CitizenRegistryABI.json';
+import { findCity } from './utils/cities'
 import './App.css';
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
     someNote: ''
   });
   const [showAddForm, setShowAddForm] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function initWeb3() {
@@ -178,7 +179,7 @@ const App = () => {
                           <li key={citizen.id} className="card">
                             <p>ID: {citizen.id}</p>
                             <p>Age: {citizen.age}</p>
-                            <p>City: {citizen.city}</p>
+                            <p>City: {findCity(citizen.city)}</p>
                             <p>Name: {citizen.name}</p>
                             <p>Note: {citizen.someNote}</p>
                           </li>
